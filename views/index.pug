@@ -1,5 +1,7 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  include ./inc/top.pug
+  include ./inc/list.pug
+  include ./inc/loginModal.pug
+  include ./inc/joinModal.pug

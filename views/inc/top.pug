@@ -1,0 +1,21 @@
+.top-wrap
+	if user
+		.user-wrap.d-flex.justify-content-between
+			.border.p-3.rounded(style="width: 20%;")
+				div.p-2= user.username
+				div.p-2 팔로워: 2
+				div.p-2 팔로잉: 3
+				div.p-2
+					button#bt-logout.btn.btn-danger.btn-sm 로그아웃
+			.border.p-3.rounded(style="width: 78%;")
+				form(name="joinForm" action="/post/save" enctype="multipart/form-data")
+					.p-2
+						textarea.w-100.border.rounded(name="content" style="height: 150px; padding: 0.75rem")
+					.p-2
+						input.form-control-file(name="img" type="file")
+					.p-2
+						button#bt-save.btn-btn-primary 저장
+	else
+		.bts
+			button#bt-login.btn.btn-primary 로그인
+			button#bt-join.btn.btn-success 회원가입
