@@ -2,13 +2,21 @@
 #loginModal.modal.fade(tabindex="-1" role="dialog" aria-hidden="true")
 	.modal-dialog(role="document")
 		.modal-content
-			.modal-header
-				h5#exampleModalLabel.modal-title 회원가입
-				button.close(type="button" data-dismiss="modal" aria-label="Close")
-					span(aria-hidden="true") ×
-			.modal-body
-				
-			.modal-footer
-				button.btn.btn-secondary(type="button" data-dismiss="modal") Close
-				button.btn.btn-primary(type="button") Save changes
+			form(name="loginForm" method="post" action="/users/login")
+				.modal-header
+					h5#exampleModalLabel.modal-title 회원로그인
+					button.close(type="button" data-dismiss="modal" aria-label="Close")
+						span(aria-hidden="true") ×
+				.modal-body
+					.p-2
+						.pb-2 이메일:
+						div
+							input.form-control(type="text" name="email" placeholder="이메일")
+					.p-2
+						.pb-2 패스워드:
+						div
+							input.form-control(type="password" name="userpw")
+				.modal-footer
+					button.btn.btn-secondary(type="button" data-dismiss="modal") Close
+					button.btn.btn-primary(type="submit") Login
 
