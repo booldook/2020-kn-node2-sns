@@ -21,4 +21,23 @@ router.post('/join', async (req, res, next) => {
   }
 });
 
+router.post("/login", async (req, res, next) => {
+  let { email, userpw } = req.body;
+  let sql, sqlVals, result;
+  sql = "SELECT * FROM user WHERE email=?";
+  result = await connect.execute(sql, [email]);
+  if(result[0][0]) {
+    let match = await bcrypt.compare(userpw, result[0][0].userpw);
+    if(match) {
+      res.send(alertLoc("로그인 되었습니다.", "/"));
+    }
+    else {
+      res.send(alertLoc("이메일/패스워드가 일치하지 않습니다.", "/"));
+    }
+  }
+  else {
+    res.send(alertLoc("이메일/패스워드가 일치하지 않습니다.", "/"));
+  }
+})
+
 module.exports = router;
