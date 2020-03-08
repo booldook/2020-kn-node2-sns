@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const { connect } = require('../modules/mysql');
 const { alertLoc } = require('../modules/util');
+const { isLogin, isLogout } = require('../modules/auth-chk');
 const router = express.Router();
 
 router.post('/join', async (req, res, next) => {
@@ -38,6 +39,10 @@ router.post("/login", async (req, res, next) => {
   else {
     res.send(alertLoc("이메일/패스워드가 일치하지 않습니다.", "/"));
   }
-})
+});
+
+router.get("/logout", (req, res, next) => {
+
+});
 
 module.exports = router;
