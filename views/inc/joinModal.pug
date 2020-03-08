@@ -1,0 +1,26 @@
+// Modal
+#joinModal.modal.fade(tabindex="-1" role="dialog" aria-hidden="true")
+	.modal-dialog(role="document")
+		.modal-content
+			form(name="joinForm" method="post" action="/users/join")
+				.modal-header
+					h5#exampleModalLabel.modal-title 회원가입
+					button.close(type="button" data-dismiss="modal" aria-label="Close")
+						span(aria-hidden="true") ×
+				.modal-body
+					.p-2
+						div.pb-2 이메일:
+						div
+							input.form-control(type="input" name="email" placeholder="이메일")
+					.p-2
+						div.pb-2 패스워드:
+						div
+							input.form-control(type="password" name="userpw")
+					.p-2
+						div.pb-2 이름(닉네임):
+						div
+							input.form-control(type="input" name="username" placeholder="이름(닉네임)")
+				.modal-footer
+					button.btn.btn-secondary(type="button" data-dismiss="modal") Close
+					button.btn.btn-primary(type="submit") Save
+
