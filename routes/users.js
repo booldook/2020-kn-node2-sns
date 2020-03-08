@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const bcrypt = require('bcrypt');
+const { connect } = require('../modules/mysql');
+const { alertLoc } = require('../modules/util');
+const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.post('/join', (req, res, next) => {
+  let {email, username, userpw } = req.body;
+  let sql, result;
+  sql = "INSERT INTO user"
 });
 
 module.exports = router;

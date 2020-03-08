@@ -13,11 +13,11 @@
 
 
 -- twit 데이터베이스 구조 내보내기
-DROP DATABASE IF EXISTS `twit`;
 CREATE DATABASE IF NOT EXISTS `twit` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `twit`;
 
 -- 테이블 twit.follow 구조 내보내기
+DROP TABLE IF EXISTS `follow`;
 CREATE TABLE IF NOT EXISTS `follow` (
   `follower_id` int(11) NOT NULL,
   `following_id` int(11) NOT NULL,
@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `follow` (
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 twit.post 구조 내보내기
+DROP TABLE IF EXISTS `post`;
 CREATE TABLE IF NOT EXISTS `post` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(140) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -48,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `post` (
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 twit.post_tag 구조 내보내기
+DROP TABLE IF EXISTS `post_tag`;
 CREATE TABLE IF NOT EXISTS `post_tag` (
   `post_id` int(11) NOT NULL,
   `tag_id` int(11) NOT NULL,
@@ -62,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `post_tag` (
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 twit.tag 구조 내보내기
+DROP TABLE IF EXISTS `tag`;
 CREATE TABLE IF NOT EXISTS `tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -74,6 +77,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 twit.user 구조 내보내기
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -84,7 +88,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `deleted` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
