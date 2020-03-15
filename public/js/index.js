@@ -16,3 +16,30 @@ function joinSubmit(f) {
 	}
 	return true;
 }
+
+function idChk(el) {
+	if(el.value.trim()) {
+		$.ajax({
+			url: "/users/idchk",
+			type: "post",
+			dataType: "json", 
+			data: {
+				email: el.value.trim()
+			}, 
+			success: function(res) {
+				if(res) {
+					
+				}
+				else {
+
+				}
+			}, 
+			error: function(xhr) {
+				console.log(xhr);
+			}
+		});
+	}
+	else {
+
+	}
+}

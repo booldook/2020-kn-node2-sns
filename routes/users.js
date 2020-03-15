@@ -45,4 +45,14 @@ router.get("/logout", (req, res, next) => {
 
 });
 
+// /users/idchk, body => email=booldook@gmail.com
+router.post("/idchk", async (req, res, next) => {
+  let { email } = req.body;
+  let sql, result;
+  sql = "SELECT email FROM user WHERE email=?";
+  result = await connect.execute(sql, [email]);
+  if(result[0][0]) res.json({result: false});
+  else res.json({result: true});
+})
+
 module.exports = router;
