@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 const { connect } = require('../modules/mysql');
 const { alertLoc } = require('../modules/util');
 const { isLogin, isLogout } = require('../modules/auth-chk');
@@ -53,6 +54,6 @@ router.post("/idchk", async (req, res, next) => {
   result = await connect.execute(sql, [email]);
   if(result[0][0]) res.json({result: false});
   else res.json({result: true});
-})
+});
 
 module.exports = router;
