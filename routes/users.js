@@ -6,7 +6,7 @@ const { alertLoc } = require('../modules/util');
 const { isLogin, isLogout } = require('../modules/auth-chk');
 const router = express.Router();
 
-router.post('/join', async (req, res, next) => {
+router.post('/join', isLogout, async (req, res, next) => {
 	let {email, username, userpw } = req.body;
 	let sql, sqlVals, result, pugVals;
 	sql = "SELECT email FROM user WHERE email=?";
@@ -23,7 +23,7 @@ router.post('/join', async (req, res, next) => {
 	}
 });
 
-router.post("/login", async (req, res, next) => {
+router.post("/login", isLogout, async (req, res, next) => {
 	const done = (err, user, msg) => {
 		if(err) return next(err);
 		if(!user) return res.send(alertLoc(msg, "/"));
@@ -37,12 +37,14 @@ router.post("/login", async (req, res, next) => {
 	passport.authenticate('local', done)(req, res, next);
 });
 
-router.get("/logout", (req, res, next) => {
-
+router.get("/logout", isLogin, (req, res, next) => {
+	req.logout();
+	req.app.locals.user = null;
+	res.send(alertLoc("로그아웃 되었습니다.", "/"));
 });
 
 // /users/idchk, body => email=booldook@gmail.com
-router.post("/idchk", async (req, res, next) => {
+router.post("/idchk", isLogout, async (req, res, next) => {
 	let { email } = req.body;
 	let sql, result;
 	sql = "SELECT email FROM user WHERE email=?";
