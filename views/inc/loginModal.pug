@@ -16,7 +16,9 @@
 						.pb-2 패스워드:
 						div
 							input.form-control(type="password" name="userpw")
-				.modal-footer
+				.modal-footer.d-flex.justify-content-between
+					div
+						button.btn.btn-warning(type="button" onclick="location.href='/users/kakao';") 카카오로그인
+						button.btn.btn-primary(type="submit") 로그인
 					button.btn.btn-secondary(type="button" data-dismiss="modal") Close
-					button.btn.btn-primary(type="submit") Login
 

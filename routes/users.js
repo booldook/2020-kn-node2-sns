@@ -53,4 +53,11 @@ router.post("/idchk", isLogout, async (req, res, next) => {
 	else res.json({result: true});
 });
 
+router.get("/kakao", passport.authenticate('kakao'));
+router.get("/kakao/cb", passport.authenticate('kakao', {
+	failureRedirect: "/"
+}, (req, res) => {
+	res.redirect("/");
+}));
+
 module.exports = router;
