@@ -27,11 +27,11 @@ function idChk(el) {
 				email: el.value.trim()
 			}, 
 			success: function(res) {
-				if(res) {
-					
+				if(res.result) {
+					$(el).next().empty().removeClass("text-danger").addClass("text-success").text("* 멋진 이메일이에요");
 				}
 				else {
-
+					$(el).next().empty().removeClass("text-success").addClass("text-danger").text("* 사용할수 없는 이메일 입니다.");
 				}
 			}, 
 			error: function(xhr) {
