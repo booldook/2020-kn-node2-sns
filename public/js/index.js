@@ -43,3 +43,25 @@ function idChk(el) {
 
 	}
 }
+
+function kakaoLogout(token) {
+	$.ajax({
+		url: "https://kapi.kakao.com/v1/user/logout",
+		type: "post",
+		dataType: "json",
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader('Content-Type', 'application/json');
+			xhr.setRequestHeader('Authorization', 'Bearer '+token);
+			xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+		},
+		success: function(res) {
+			console.log(res);
+			location.href = "/users/logout";
+		},
+		error: function(xhr, status, error) {
+			console.log(xhr, status, error);
+			alert("카카오 로그아웃에 실패하였습니다.");
+			//location.href = "/";
+		}
+	})
+}

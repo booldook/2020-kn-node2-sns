@@ -25,6 +25,7 @@ router.post('/join', isLogout, async (req, res, next) => {
 
 router.post("/login", isLogout, async (req, res, next) => {
 	const done = (err, user, msg) => {
+		console.log(req.user);
 		if(err) return next(err);
 		if(!user) return res.send(alertLoc(msg, "/"));
 		else {
@@ -39,7 +40,6 @@ router.post("/login", isLogout, async (req, res, next) => {
 
 router.get("/logout", isLogin, (req, res, next) => {
 	req.logout();
-	req.session.destroy();
 	req.app.locals.user = null;
 	res.send(alertLoc("로그아웃 되었습니다.", "/"));
 });

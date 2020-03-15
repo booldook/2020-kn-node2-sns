@@ -6,7 +6,10 @@
 				div.p-2 팔로워: 2
 				div.p-2 팔로잉: 3
 				div.p-2
-					button#bt-logout.btn.btn-danger.btn-sm(onclick="location.href='/users/logout';") 로그아웃
+					if user.api == 'local'
+						button#bt-logout.btn.btn-danger.btn-sm(onclick="location.href='/users/logout';") 로그아웃
+					else
+						button#bt-logout.btn.btn-danger.btn-sm(onclick=`kakaoLogout("${user.api_token}")`) 카카오 로그아웃
 			.border.p-3.rounded(style="width: 78%;")
 				form(name="joinForm" action="/post/save" enctype="multipart/form-data")
 					.p-2
