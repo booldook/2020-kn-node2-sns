@@ -1,0 +1,9 @@
+ul.list-wrap.mt-3
+	each v in lists
+		li.border.rounded.my-2.p-2
+			.p-2.border-bottom
+				span= v.username
+			.comment.p-2= v.content
+		if v.img
+			.img.p-2
+				img(src=`/uploads/${v.img.substr(0,6)}/${v.img}` style="max-width: 100%;")

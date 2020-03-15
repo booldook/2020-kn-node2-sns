@@ -8,7 +8,7 @@
 				div.p-2
 					button#bt-logout.btn.btn-danger.btn-sm(onclick="location.href='/users/logout';") 로그아웃
 			.border.p-3.rounded(style="width: 78%;")
-				form(name="joinForm" action="/post/save" enctype="multipart/form-data")
+				form(name="postForm" method="post" action="/post/save" enctype="multipart/form-data")
 					.p-2
 						textarea.w-100.border.rounded(name="content" style="height: 150px; padding: 0.75rem")
 					.p-2
