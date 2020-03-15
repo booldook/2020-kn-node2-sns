@@ -1,10 +1,10 @@
 const mysql = require('mysql2/promise');
 const connect = mysql.createPool({
-	host: "localhost",
-	port: 3307,
-	user: "root",
+	host: "db.booldook4.gabia.io",
+	port: 3306,
+	user: "booldook4",
 	password: process.env.dbpass,
-	database: 'twit',
+	database: 'dbbooldook4',
 	connectionLimit: 10,
 	waitForConnections: true
 });

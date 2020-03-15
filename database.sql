@@ -12,12 +12,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- twit 데이터베이스 구조 내보내기
-CREATE DATABASE IF NOT EXISTS `twit` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `twit`;
+
 
 -- 테이블 twit.follow 구조 내보내기
-DROP TABLE IF EXISTS `follow`;
 CREATE TABLE IF NOT EXISTS `follow` (
   `follower_id` int(11) NOT NULL,
   `following_id` int(11) NOT NULL,
@@ -32,29 +29,27 @@ CREATE TABLE IF NOT EXISTS `follow` (
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 twit.post 구조 내보내기
-DROP TABLE IF EXISTS `post`;
 CREATE TABLE IF NOT EXISTS `post` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(140) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created` datetime NOT NULL,
-  `updated` datetime NOT NULL,
-  `deleted` datetime NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` datetime DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_post_user` (`user_id`),
   CONSTRAINT `FK_post_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 twit.post_tag 구조 내보내기
-DROP TABLE IF EXISTS `post_tag`;
 CREATE TABLE IF NOT EXISTS `post_tag` (
   `post_id` int(11) NOT NULL,
   `tag_id` int(11) NOT NULL,
-  `created` datetime NOT NULL,
-  `updated` datetime NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`post_id`,`tag_id`),
   KEY `FK_post_tag_tag` (`tag_id`),
   CONSTRAINT `FK_post_tag_post` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -64,33 +59,33 @@ CREATE TABLE IF NOT EXISTS `post_tag` (
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 twit.tag 구조 내보내기
-DROP TABLE IF EXISTS `tag`;
 CREATE TABLE IF NOT EXISTS `tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created` datetime NOT NULL,
-  `updated` datetime NOT NULL,
-  `deleted` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`,`title`),
+  UNIQUE KEY `title` (`title`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 twit.user 구조 내보내기
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `userpw` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `userpw` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `api` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `api_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created` datetime NOT NULL,
-  `updated` datetime NOT NULL,
-  `deleted` datetime NOT NULL,
+  `api_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
